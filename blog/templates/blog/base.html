@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Welcome to Blogs{% endblock %}</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            h3 {
+                color: #3498db;
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            button {
+                background-color: #3498db;
+                color: white;
+                font-size: 1rem;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 10px;
+                transition: background-color 0.3s ease;
+            }
+
+            button a {
+                color: white;
+                text-decoration: none;
+            }
+
+            button:hover {
+                background-color: #2980b9;
+            }
+
+            button:focus {
+                outline: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+
+</html>

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Post,Comment
 from .forms import PostForm, LoginForm,AddCommentForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -29,6 +29,11 @@ def user_login(request):
         form = LoginForm()
     return render(request,'blog/login.html',{'form':form})
 
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login') 
 
 def user_registration(request):
     if request.method == 'POST':

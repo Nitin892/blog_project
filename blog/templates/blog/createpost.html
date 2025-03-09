@@ -79,9 +79,43 @@
             padding: 5px;
         }
 
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #c0392b;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-field input {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    {% endif %}
     <div class="container">
         <h1>Upload Form</h1>
         <form method="post" enctype="multipart/form-data">

@@ -14,12 +14,30 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #c0392b;
         }
 
         .container {
             background-color: #fff;
             padding: 30px;
-            width: 40%;
+            width: 80%;
             max-width: 500px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -83,16 +101,34 @@
             outline: none;
         }
 
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .form-field input {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    {% endif %}
     <div class="container">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-</div>
-    
+        <h2>Form Title</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
 </body>
 </html>

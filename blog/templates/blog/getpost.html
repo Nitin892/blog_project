@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    {% endif %}
     {% for i in posts %}
         <p>{{i.title}}</p> 
         
